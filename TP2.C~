@@ -1,0 +1,38 @@
+              // Mesure capteurs infra-rouge
+		kh4_proximity_ir(Buffer, dsPic);
+		ir_i=(Buffer[i*2] | Buffer[i*2+1]<<8);	 // CAPTEUR i =1 ---12
+
+		left_ir=(Buffer[9*2] | Buffer[9*2+1]<<8); //capteur irfra-rouge 9 
+		right_ir=(Buffer[10*2] | Buffer[10*2+1]<<8);  //capteur irfra-rouge 10
+
+
+
+
+
+
+		// stop robot
+		kh4_SetMode(kh4RegSpeed,dsPic);
+ 		kh4_set_speed(0,0,dsPic ); // LEFT SPEED 0 , RIGHT SPEED 0 (PULSATION )
+                
+		// Forward
+		kh4_SetMode(kh4RegSpeed,dsPic);
+		kh4_set_speed(200,200,dsPic); // LEFT SPEED 200 , RIGHT SPEED 200 (PULSATION )
+		usleep(5000000); // DURÉE DE TACHE EN MICRO-SECONDES
+
+		//Backward 
+		kh4_SetMode(kh4RegSpeed,dsPic);
+                kh4_set_speed(-200,-200,dsPic);//
+		usleep(5000000);
+
+
+		// mute Ultrasounds
+		kh4_activate_us(0,dsPic);
+
+		// set the volume of the speakers	(in %)
+		set_speakers_volume(80,80); 
+	
+		// set the volume of the microphones (in %)
+ 		set_microphones_volume(80,80);
+
+		
+
